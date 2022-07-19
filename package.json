@@ -1,0 +1,25 @@
+{
+  "name": "collect-nft",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "luoyeeth",
+  "license": "ISC",
+  "dependencies": {
+    "@alch/alchemy-web3": "^1.4.1",
+    "axios": "^0.26.1",
+    "dotenv": "^16.0.0",
+    "moment": "^2.29.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luoyeETH/collect-nft.git"
+  },
+  "bugs": {
+    "url": "https://github.com/luoyeETH/collect-nft/issues"
+  },
+  "homepage": "https://github.com/luoyeETH/collect-nft#readme",
+  "description": ""
+}
