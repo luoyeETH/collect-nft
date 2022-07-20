@@ -33,7 +33,7 @@
 
 1.克隆或下载该项目到本地  
 ```
-git clone https://github.com/luoyeETH/flipAlertBot.git
+git clone https://github.com/luoyeETH/collect-nft.git  
 ```
 2.切换到对应目录，安装所需依赖包，同时建议安装forever进程管理模块  
 ```
