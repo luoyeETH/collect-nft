@@ -154,7 +154,7 @@ async function collectNFT(contract, toAddress, accounts) {
     let address = PUBLIC_KEY_LIST[i]
     let name = NICK_NAME_LIST[i]
     let tokenIdList = addressTokenIdMap.get(address)
-    if (tokenIdList.length === 0) {
+    if (tokenIdList.length == 0) {
       console.log(`${address} ${name} 没有可以归集的NFT`)
       continue
     }
