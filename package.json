@@ -2,8 +2,12 @@
   "name": "collect-nft",
   "version": "1.0.0",
   "main": "index.js",
+  "bin": "./index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pkg": "pkg . --out-path=dist/"
+  },
+  "pkg": {
+    "scripts": ""
   },
   "author": "luoyeeth",
   "license": "ISC",

@@ -1,4 +1,5 @@
-const config = require("./config")
+const path = require('path')
+const config = require(path.join(process.cwd(), "./config"))
 
 const API_URL = `https://eth-mainnet.alchemyapi.io/v2/${config.alchemyKey}`
 const PUBLIC_KEY_LIST = config.publicKey
@@ -7,6 +8,7 @@ const NICK_NAME_LIST = config.nickName
 const MAX_PRIORITY_FEE_PER_GAS = config.maxPriority
 const MAX_FEE_PER_GAS = config.maxGasPrice
 const MULTIPLE_GAS = config.multipleGas
+const tokenId_LIST = []
 
 const {createAlchemyWeb3} = require("@alch/alchemy-web3")
 const web3 = createAlchemyWeb3(API_URL)
@@ -23,10 +25,15 @@ function sleep(ms) {
   return new Promise(resolve => setTimeout(() => resolve(), ms));
 };
 
+const readline = require('readline').createInterface({
+  input: process.stdin,
+  output: process.stdout
+})
+
 
 // 初始化
 let date = getDate()
-console.log(`\n${date} 归集程序启动...\n`)
+console.log(`\n${date} 初始化完成\n`)
 // address-tokenIdList的map
 let addressTokenIdMap = new Map()
 
@@ -42,6 +49,7 @@ async function getNFTBalance(contract, address) {
     // 16进制转10进制
     let tokenIdDec = parseInt(nft.id.tokenId, 16)  
     console.log("token ID:", tokenIdDec);
+    tokenId_LIST.push(tokenIdDec);
     // 保存16进制的tokenId到数组
     let tokenIdHex = nft.id.tokenId
     tokenIdList.push(tokenIdHex)
@@ -64,6 +72,9 @@ const getAllNFTBalance = async (contract) => {
       allNftBalance += nftBalance
     }
   }
+  // 对数组排序
+  tokenId_LIST.sort(function(a, b){return a-b});
+  console.log(tokenId_LIST)
   console.log(`NFT ${contract} \nALL Address balance: ${allNftBalance}`) 
   return allNftBalance
 }
@@ -139,6 +150,7 @@ async function transferNFT(publicKey, privateKey, contract, toAddress, tokenId) 
 
 // 归集nft
 async function collectNFT(contract, toAddress, accounts) { 
+  console.log(`\n${date} 归集程序启动...\n`)
   if (accounts == 0) {
     accounts = PUBLIC_KEY_LIST.length;
   } else if (accounts > PUBLIC_KEY_LIST.length) {
@@ -176,7 +188,22 @@ const startRun = async () => {
   
   if (process.argv.length < 3) {
     console.log(`\n请输入合约地址和归集账户数\n`)
-    return
+    const contractAddress = await new Promise(resolve => {
+      readline.question("合约地址? ", resolve)
+    })
+    console.log();
+    const accounts = await new Promise(resolve => {
+      readline.question("归集账户数?(按回车则不归集) ", resolve)
+    })
+    console.log(`\n合约地址: ${contractAddress}\n`);   
+    if (accounts == '') {
+      console.log(`\n开始查询库存 \n`)
+      await getAllNFTBalance(contractAddress)
+    } else {
+      console.log(`\n归集账户数 ${accounts}\n`)
+      let toAddress = config.collectAddress;
+      await collectNFT(contractAddress, toAddress, accounts);
+    }
   } 
   // 查询NFT库存
   else if (process.argv.length == 3) {
