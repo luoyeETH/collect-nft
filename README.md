@@ -30,10 +30,12 @@
 **以上三组数据要一一对应并保持总数一致**  
 
 ### 部署流程  
+**Release中发布了exe版本，配置config.js后在Windows下可直接运行。**  
+> linux和mac版本未测试  
 
 1.克隆或下载该项目到本地  
 ```
-git clone https://github.com/luoyeETH/collect-nft.git  
+git clone https://github.com/luoyeETH/collect-nft.git
 ```
 2.切换到对应目录，安装所需依赖包，同时建议安装forever进程管理模块  
 ```
