@@ -16,7 +16,7 @@
 
 4.`multipleGas` gaslimit倍数  
 
-5.`collectAddress` 归集地址  
+5.`collectAddress` 归集的目标地址  
 
 6.`publicKey` 公钥/账户地址
 > 数组。["Address1","Address2"]  
@@ -51,7 +51,7 @@ npm install forever -g
 node index.js <ContractAddress>  
 
 # 批量归集  
-# ContractAddress合约地址 accounts归集的账户数(填0全部归集)
+# ContractAddress合约地址 accounts归集的账户数目(填0全部归集)
 node index.js <ContractAddress> <accounts>
 ```
 

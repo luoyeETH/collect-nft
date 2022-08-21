@@ -1,7 +1,7 @@
 module.exports = {
-    alchemyKey: '',  // alchemy提供的ApiKey
-    maxPriority: "2",  // 最大优先费 [建议>2]
-    maxGasPrice: "30",  // 最大Gas [建议>30]
+    alchemyKey: "",  // alchemy提供的ApiKey
+    maxPriority: "2",  // 最大优先费 
+    maxGasPrice: "30",  // 最大Gas 
     multipleGas: 1.2,  // gaslimit倍数,默认1.2,小于1会导致发生out of gas失败，过高需要余额充足 [>=1]
     collectAddress: "",  // 归集地址
     // 地址
